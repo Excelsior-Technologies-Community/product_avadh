@@ -85,7 +85,7 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  padding:  24px;
+  padding:  45px 24px;
   gap: 20px;
 }
 .details {
