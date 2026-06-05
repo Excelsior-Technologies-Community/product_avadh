@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './product.css'
+import { toast } from "react-toastify";
 
 function Product() {
   const [products, setProducts] = useState([]);
@@ -8,7 +9,10 @@ function Product() {
   useEffect(() => {
     fetch("https://dummyjson.com/products")
       .then((res) => res.json())
-      .then((data) => setProducts(data.products));
+      .then((data) => {
+        setProducts(data.products);
+        toast.success("Products loaded successfully!", { toastId: 'products-loaded' });
+      });
   }, []);
 
   return (

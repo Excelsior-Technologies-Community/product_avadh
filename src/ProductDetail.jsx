@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import './product.css'
+import { toast } from "react-toastify";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -10,7 +11,11 @@ function ProductDetails() {
   useEffect(() => {
     fetch(`https://dummyjson.com/products/${id}`)
       .then((res) => res.json())
-      .then((data) => setProduct(data));
+      .then((data) => {
+        setProduct(data);
+        toast.success("Product details loaded successfully!", { toastId: 'product-loaded' });
+      });
+      
   }, [id]);
 
   if (!product) {
@@ -23,7 +28,7 @@ function ProductDetails() {
 
   return (
     <div className="d-container">
-        <h1>Product Details</h1>
+        
     <div className="details">
         <div className="left">
       <img
